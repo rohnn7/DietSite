@@ -1,0 +1,71 @@
+﻿@page
+@model DietSite.Pages.CreateAppModel
+@{
+    ViewData["Title"] = "CreateApp";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-4 col-md-8">
+            @{
+                DietSite.User u = DietSite.Helpers.SessionHelpers.GetObject<DietSite.User>(HttpContext.Session, DietSite.Helpers.Constant.UserDetails);
+                if (u.Username == "Chachi")
+                {
+                    <div class="jumbotron">
+                                    <form method="post">
+                                        <h1 class="text-center">Create a Diet</h1>
+                                        <div class="form-group row">
+                                            <x:label asp-for="MorningTimeBegins" class="col-sm-2 col-form-label mt-2"></x:label>
+                                            <div class="col-sm-8 mt-3">
+                                                <x:input asp-for="MorningTimeBegins" class="form-control" placeholder="Enter The time when morning schedule begins" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <x:textarea asp-for="MorningTimeEnds" class="col-sm-2 col-form-label mt-2"></x:textarea>
+                                            <div class="col-sm-8 mt-3">
+                                                <x:input asp-for="MorningTimeEnds" class="form-control" placeholder="Enter The time when morning schedule ends" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <x:textarea asp-for="AfternoonTimeBegins" class="col-sm-2 col-form-label mt-2"></x:textarea>
+                                            <div class="col-sm-8 mt-3">
+                                                <x:input asp-for="AfternoonTimeBegins" class="form-control" placeholder="Enter The time when afternoon schedule begins" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <x:textarea asp-for="AfternoonTimeEnds" class="col-sm-2 col-form-label mt-2"></x:textarea>
+                                            <div class="col-sm-8 mt-3">
+                                                <x:input asp-for="AfternoonTimeEnds" class="form-control" placeholder="Enter The time when afternoon schedule ends" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <x:textarea asp-for="AvgTime" class="col-sm-2 col-form-label mt-2"></x:textarea>
+                                            <div class="col-sm-8 mt-3">
+                                                <x:input asp-for="AvgTime" class="form-control" placeholder="Enter the average time taken in each appointment" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <x:textarea asp-for="Day" class="col-sm-2 col-form-label mt-2"></x:textarea>
+                                            <div class="col-sm-8 mt-3">
+                                                <x:input asp-for="Day" class="form-control" placeholder="valid value is 0-6(0=monday 1=Tuesday 2=wednesday 3=thursday 4=friday 5=saturday 6=sunday)" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <p align="center">
+                                                    <x:button asp-page-handler="CreateApp" type="submit" class="btn btn-primary align-self-sm-center">Create</x:button>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </form>
+                    </div>
+                }
+                else
+                {
+                    <h1>You are not authorized to Access this page</h1>
+                }
+
+            }
+        </div>
+    </div>
+</div>

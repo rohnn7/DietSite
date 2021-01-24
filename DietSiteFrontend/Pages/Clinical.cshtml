@@ -1,0 +1,57 @@
+﻿@page
+@model DietSite.Pages.ClinicalModel
+@{
+    ViewData["Title"] = "Clinical";
+}
+    <section class="ftco-section ftco-services-2" >
+        <div class="container">
+            <div class="row justify-content-center pb-5">
+                <div class="col-md-12 heading-section text-center ftco-animate">
+                    <span class="subheading">Fit &amp; Healthy</span>
+                    <h2 class="mb-4">Clinical Deits</h2>
+                    <p>Here we give you apportunity, to relive your youth</p>
+                </div>
+            </div>
+
+            @{ 
+                DietSite.Helpers.SessionHelpers.StoreObject(HttpContext.Session, DietSite.Helpers.Constant.RedirectPage, "Clinical");
+                var Diets=DietSite.Helpers.SessionHelpers.GetObject<List<DeitTable>>(HttpContext.Session, DietSite.Helpers.Constant.AllDeits);
+                foreach (var d in Diets)
+                {
+                    if (d.DeittypeID == 1 && d.Active==0)
+                    {
+                    <div class="card-deck " >
+                                    <div class="card-m-3 bg-dark" style="min-width: 18rem; max-width:30.5%;">
+                                        <div class="card-header">
+                                            <h3>@d.DietName</h3>
+                                            <h4>@d.Princing</h4>
+                                        </div>
+                                        <div class="card-body">@d.TrialPeriod Days Free Trials</div>
+                                        <x:img class="card-img-top img-thumbnail" src="S:\OneDrive\Projects\DietSite\DietSite\wwwroot\images\gallery-3.jpg" asp-append-version="true" alt="@d.DietName"/>
+                                        @{
+                                            DietSite.User u = DietSite.Helpers.SessionHelpers.GetObject<User>(HttpContext.Session, DietSite.Helpers.Constant.UserDetails);
+
+                                            if (u.Username == "Chachi")
+                                            {
+                                                <div class="card-footer text-center">
+                                                    <x:a class="btn btn-primary m-1" asp-page="ViewDiet" asp-route-ID="@d.DeitID">View</x:a>
+                                                    <x:a asp-page="EditDiet" asp-route-ID="@d.DeitID" class="btn btn-primary m-1">Edit</x:a>
+                                                    <x:a asp-page="DeleteDiet" asp-route-ID="@d.DeitID" class="btn btn-primary m-1">Delete</x:a>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="card-footer text-center">
+                                                    <x:a class="btn btn-primary m-1" asp-page="ViewDiet" asp-route-ID="@d.DeitID">View</x:a>
+                                                    <x:a asp-page="Purchase" asp-route-ID="@d.DeitID" class="btn btn-primary m-1">Purchase</x:a>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                    </div>
+                     }
+                    }
+                }
+        </div>
+    
+    </section>

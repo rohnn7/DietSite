@@ -1,0 +1,100 @@
+﻿@page "{handler?}"
+@model DietSite.Pages.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<!--<div id="content">
+    <br /><br /><br /><br /><br /><br />
+    <div class="container">
+        <div class="heading-section">
+            <h1>Please Login</h1>
+        </div>
+        <div class="row block-6">
+            <div class="col-md-7 order-md-last d-flex">
+                <div class="box bg-light p-4 p-md-5 d-flex">
+                    <x:form method="post">
+                        <div class="row ">
+                            <div class="col-md-7 order-md-last d-flex">
+                                <div class="form-group">
+                                    <x:label asp-for="Username">Username</x:label>
+                                    <x:input asp-for="Username" type="text" class="form-control" placeholder="Enter Username" name="uname" required />
+                                    <x:span asp-validation-for="Username"></x:span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-7 order-md-last d-flex">
+                                <div class="form-group">
+                                    <x:label asp-for="Password">Password</x:label>
+                                    <x:input asp-for="Password" type="password" class="form-control" placeholder="Enter Password" name="uname" required />
+                                </div>
+
+                            </div>
+                            <br />
+                            <div class="text-sm-right align-content-sm-end">
+                                <x:a asp-page="Register1"> Not have an account?</x:a>
+                            </div>
+                            <div class="col-md-7 order-md-last d-flex text-center">
+                                <div class="row block-6">
+                                    <div class="form-group">
+                                        <x:button asp-page-handler="SignIn" type="submit" class="btn btn-primary">Login</x:button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <p></p>
+                            </div>
+                        </div>
+                    </x:form><br /><br /><br /><br /><br /><br /><br />
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>-->
+    <section class="ftco-section ftco-services-2">
+        <div id="content">
+
+            <div class="container">
+                <br /><br /><br /><br />
+
+
+                <x:form  method="post" class="mt-3 col-sm-10 bg-light ">
+                    <h1 class="text-center">Please Login</h1>
+                    <x:div class="form-group row">
+                        <x:label asp-for="Username" class="col-sm-2 col-form-label mt-2"></x:label>
+                        <div class="col-sm-8 mt-3">
+                            <x:input asp-for="Username" class="form-control" placeholder="Enter Username" />
+                            <x:span asp-validation-for="Username"></x:span>
+                        </div>
+
+                    </x:div>
+                    <div class="form-group row">
+                        <x:label asp-for="Password" class="col-sm-2 col-form-label mt-3"></x:label>
+                        <div class="col-sm-8 mt-3">
+                            <x:input asp-for="Password" class="form-control" placeholder="Enter password" />
+                            <x:span asp-validation-for="Password"></x:span>
+                        </div>
+
+                        </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <p align="right">
+                                <x:a asp-page="Register1" class="text-right"> Not have an account?</x:a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <p align="center">
+                                <x:a asp-page-handler="SignIn" type="submit" class="btn btn-primary align-self-sm-center">Login</x:a>
+                            </p>
+                            <br /> <br />
+                        </div>
+                    </div>
+                </x:form>
+
+            </div>
+            <br /> <br /><br />
+        </div>
+    </section>

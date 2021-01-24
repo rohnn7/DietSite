@@ -1,0 +1,36 @@
+﻿@page
+@model DietSite.Pages.PurchaseModel
+@{
+    ViewData["Title"] = "Purchase";
+}
+    <section class=" ftco-section ftco-services-2 ">
+        <div class="container">
+            @{
+                var diet = DietSite.Helpers.SessionHelpers.GetObject<DeitTable>(HttpContext.Session, DietSite.Helpers.Constant.Diet);
+                HttpContext.Session.Remove(DietSite.Helpers.Constant.Diet);
+                var page = DietSite.Helpers.SessionHelpers.GetObject<string>(HttpContext.Session, DietSite.Helpers.Constant.RedirectPage);
+                HttpContext.Session.Remove(DietSite.Helpers.Constant.RedirectPage);
+                if (page == "Clinical" || page == "WeightLoss" || page == "ViewDiet")
+                {
+                    <section class="mt-3 col-sm-12 bg-light ">
+                        <div class="row justify-content-center pb-5">
+                            <div class="col-md-12 heading-section text-center ftco-animate">
+                                <span class="subheading">Fit &amp; Healthy</span>
+                                <h2 class="mb-4 text-primary"> Diet Name<!--@diet.DietName--></h2>
+                                <p class="font-weight-bold text-primary">Enjoy our special diet just for you by paying Rs 399 <!--@diet.Princing--> /- </p>
+                            </div>
+                        </div>
+                    </section>
+
+                }
+                else
+                {
+                    <h1>Repairing.....</h1>
+                }
+
+
+            }
+
+
+        </div>
+    </section>

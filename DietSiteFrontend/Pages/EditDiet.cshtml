@@ -1,0 +1,68 @@
+﻿@page
+@model DietSite.Pages.EditDietModel
+@{
+    ViewData["Title"] = "EditDiet";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-4 col-md-8">
+            @{
+                DietSite.DeitTable d = DietSite.Helpers.SessionHelpers.GetObject<DietSite.DeitTable>(HttpContext.Session, DietSite.Helpers.Constant.Diet);
+                HttpContext.Session.Remove(DietSite.Helpers.Constant.Diet);
+                DietSite.User u = DietSite.Helpers.SessionHelpers.GetObject<DietSite.User>(HttpContext.Session, DietSite.Helpers.Constant.UserDetails);
+                if (u.Username == "Chachi")
+                {
+                    <div class="jumbotron">
+                        <form method="post">
+                            <h1 class="text-center">Create a Diet</h1>
+                            <div class="form-group row">
+                                <x:label asp-for="DietName" class="col-sm-2 col-form-label mt-2"></x:label>
+                                <div class="col-sm-8 mt-3">
+                                    <x:input asp-for="DietName" class="form-control" value="@d.DietName" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <x:textarea asp-for="DietContent" class="col-sm-2 col-form-label mt-2"></x:textarea>
+                                <div class="col-sm-8 mt-3">
+                                    <x:input asp-for="DietContent" class="form-control" value="@d.DeitSummary" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <x:textarea asp-for="DietTrialPeriod" class="col-sm-2 col-form-label mt-2"></x:textarea>
+                                <div class="col-sm-8 mt-3">
+                                    <x:input asp-for="DietTrialPeriod" class="form-control" value="@d.TrialPeriod" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <x:textarea asp-for="DietPrice" class="col-sm-2 col-form-label mt-2"></x:textarea>
+                                <div class="col-sm-8 mt-3">
+                                    <x:input asp-for="DietPrice" class="form-control" value="@d.Princing"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <x:textarea asp-for="DietType" class="col-sm-2 col-form-label mt-2"></x:textarea>
+                                <div class="col-sm-8 mt-3">
+                                    <x:input asp-for="DietType" class="form-control" value="@d.Type"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <p align="center">
+                                        <x:button asp-page-handler="Edit" type="submit" class="btn btn-primary align-self-sm-center">Edit</x:button>
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                }
+                else
+                {
+                    <h1>You are not authorized to Access this page</h1>
+                }
+
+            }
+        </div>
+    </div>
+</div>

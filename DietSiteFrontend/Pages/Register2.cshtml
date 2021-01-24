@@ -1,0 +1,67 @@
+﻿@page
+@model DietSite.Pages.Register2Model
+@{
+    ViewData["Title"] = "Register2";
+}
+<section class="ftco-section ftco-services-2">
+    <div id="content">
+
+        <div class="container">
+            <form method="post" class="mt-3 col-sm-10 bg-light ">
+                <h1 class="text-center text-primary">Please Register</h1>
+                <div class="form-group row">
+                    <x:label asp-for="Mobile" class="col-sm-2 col-form-label mt-2 text-capitalize">Name</x:label>
+                    <div class="col-sm-8 mt-3">
+                        <x:input asp-for="Mobile" class="form-control" placeholder="Enter Mobile Number" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <x:label class="col-sm-2 col-form-label mt-2"></x:label>
+                    <div class="col-sm-8 mt-3">
+                        <x:select asp-items="Model.Country" class="custom-select mr-sm-2">
+                            <x:option>Please Select</x:option>
+                        </x:select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <x:label class="col-sm-2 col-form-label mt-2"></x:label>
+                    <div class="col-sm-8 mt-3">
+                        <x:select asp-items="Model.State" class="custom-select mr-sm-2">
+                            <x:option>Please Select</x:option>
+                        </x:select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <x:label class="col-sm-2 col-form-label mt-2"></x:label>
+                    <div class="col-sm-8 mt-3">
+                        <x:select asp-items="Model.City" class="custom-select mr-sm-2">
+                            <x:option>Please Select</x:option>
+                        </x:select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <x:label asp-for="Add1" class="col-sm-2 col-form-label mt-2 text-capitalize"></x:label>
+                    <div class="col-sm-8 mt-3">
+                        <x:input asp-for="Add1" class="form-control" placeholder=" First Lane " />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <x:label asp-for="Add2" class="col-sm-2 col-form-label mt-2 text-capitalize"></x:label>
+                    <div class="col-sm-8 mt-3">
+                        <x:input asp-for="Add2" class="form-control" placeholder="Second Lane" />
+                    </div>
+                </div>
+                <div class="align-self-sm-center">
+                    <div class="col-sm-12">
+                        <p align="center">
+                            <x:button asp-page-handler="Register" type="submit" class="btn btn-primary align-self-sm-center">Register</x:button>
+                        </p>
+                        <br /> <br />
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</section>
+

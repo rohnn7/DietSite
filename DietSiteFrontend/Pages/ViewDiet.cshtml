@@ -1,0 +1,44 @@
+﻿@page
+@model DietSite.Pages.ViewDietModel
+@{
+    ViewData["Title"] = "ViewDiet";
+}
+    <section class="ftco-section ftco-services-2">
+        <div class="container">
+            @{
+                var i = 3;//DietSite.Helpers.SessionHelpers.GetObject<int>(HttpContext.Session, DietSite.Helpers.Constant.Flag);
+                DeitTable d = DietSite.Helpers.SessionHelpers.GetObject<DeitTable>(HttpContext.Session, DietSite.Helpers.Constant.Diet);
+                HttpContext.Session.Remove(DietSite.Helpers.Constant.Diet);
+                if (i == 3)
+                {
+                    <div class="row justify-content-center pb-5">
+                        <div class="col-md-12 heading-section text-center ftco-animate">
+                            <span class="subheading">Invalid! </span>
+
+                            <h2 class="mb-4">Sorry, the validity of this diet has expired!</h2>
+                            <h4>Free Trial- 7 Cost- 1000/-</h4>
+                            <x:button asp-page-handler="Redirect" type="submit" class="btn btn-primary">Purchase</x:button>
+                            <x:button asp-page-handler="AddToBasket" type="submit" class="btn btn-primary">AddToCart</x:button>
+                        </div>
+                    </div>
+
+                }
+                else
+                {
+                    <div class="row justify-content-center pb-5">
+                        <div class="col-md-12 heading-section text-center ftco-animate">
+                            <span class="subheading">Fit &amp; Healthy</span>
+
+                            <h2 class="mb-4">Diet</h2>
+                            <p>Free Trial- 7 Cost- 1000/-</p>
+                        </div>
+                    </div>
+                    <div class="jumbotron">
+                        <h4 class="col-md-12 ftco-animate font-weight-bold">jofnreuinreuifnrijfnerjnfrjinfg</h4>
+                        <x:button asp-page-handler="AddToBasket" type="submit" class="btn btn-primary">AddToCart</x:button>
+                    </div>
+                }
+
+            }
+        </div>
+    </section>

@@ -1,0 +1,308 @@
+﻿@page
+@model DietSite.Pages.AppointmentModel
+@{
+    ViewData["Title"] = "Appointment";
+}
+@{ 
+    var d = DietSite.Helpers.SessionHelpers.GetObject<appparam>(HttpContext.Session, DietSite.Helpers.Constant.TodaySlots);
+    DateTime mb = new DateTime(2020, 4, 1, 9,0,0);//d.MorinigScheduleBegin;
+    DateTime me = new DateTime(2020, 4, 1, 12,0,0);//d.MorningScheduleEnds;
+    DateTime ab = new DateTime(2020, 4, 1, 1,0,0);//d.AfternoonScheduleBegins;
+    DateTime ae = new DateTime(2020, 4, 1, 4,0,0);//d.AfternoonSCheduleEnds;
+    int avgtime = 15;//d.Avgtime;
+<section class="ftco-section ftco-schedule" id="schedule-section">
+    <div class="container">
+        <div class="row justify-content-center pb-5">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+                <span class="subheading">Schedule</span>
+                <h2 class="mb-4">Appointment Schedule</h2>
+                <p>Book your appointment just by sitting at home</p>
+            </div>
+        </div>
+        <div class="ftco-schedule">
+            <div class="row">
+                <div class="col-md-4 nav-link-wrap">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link ftco-animate active" id="v-pills-8-tab" data-toggle="pill" href="#v-pills-8" role="tab" aria-controls="v-pills-8" aria-selected="true">Morning <span>Date - @DateTime.Now</span></a>
+
+                        <a class="nav-link ftco-animate" id="v-pills-9-tab" data-toggle="pill" href="#v-pills-9" role="tab" aria-controls="v-pills-9" aria-selected="false">Afternoon <span>Date - @DateTime.Now</span></a>
+
+                        <!--        <a class="nav-link ftco-animate" id="v-pills-10-tab" data-toggle="pill" href="#v-pills-10" role="tab" aria-controls="v-pills-10" aria-selected="false">Wednesday <span>Aerobic Program</span></a>
+
+                    <a class="nav-link ftco-animate" id="v-pills-11-tab" data-toggle="pill" href="#v-pills-11" role="tab" aria-controls="v-pills-11" aria-selected="false">Thursday <span>Yoga Classes</span></a>
+
+                    <a class="nav-link ftco-animate" id="v-pills-12-tab" data-toggle="pill" href="#v-pills-12" role="tab" aria-controls="v-pills-12" aria-selected="false">Friday <span>Fitness Program</span></a>
+
+                    <a class="nav-link ftco-animate" id="v-pills-13-tab" data-toggle="pill" href="#v-pills-13" role="tab" aria-controls="v-pills-13" aria-selected="false">Saturday <span>Yoga Classes</span></a>
+
+                    <a class="nav-link ftco-animate" id="v-pills-14-tab" data-toggle="pill" href="#v-pills-14" role="tab" aria-controls="v-pills-14" aria-selected="false">Sunday <span>Crossfit Program</span></a>
+                -->
+                    </div>
+                </div>
+                <div class="col-md-8 tab-wrap">
+
+                    <div class="tab-content" id="v-pills-tabContent">
+
+                        <div class="tab-pane fade show active" id="v-pills-8" role="tabpanel" aria-labelledby="day-8-tab">
+                            <div class="coach-wrap ftco-animate d-sm-flex">
+
+                                <div class="text pl-md-5">
+                                    <span class="time">08:00AM - 10:00AM</span>
+                                    <h2><a href="#" class="text-primary">Morning Schedule</a></h2>
+                                    <p>
+                                        <div class="btn-group">
+                                            @{
+                                                while (mb <= me)
+                                                {
+                                                    DietSite.Helpers.SessionHelpers.StoreObject(HttpContext.Session, DietSite.Helpers.Constant.ParticularSlot, me);
+                                                    <div class="view overlay">
+                                                        <x:button asp-page-handler="Book" class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Book">@me</x:button>
+                                                        <div class="mask flex-center rgba-red-strong">
+                                            <p class="white-text"></p>
+                                        </div>
+                                    </div>
+                                    TimeSpan t = TimeSpan.FromMinutes(avgtime);
+                                    mb = mb.Add(t);
+
+                                }
+                                            }
+                                        </div>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <!--<div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-2.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Yoga Program</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Anthony Miller</a> <span class="position">Cardio Expert</span></h3>
+                            </div>
+                        </div>
+                        <div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-3.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Body Building</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Anthony Miller</a> <span class="position">Cardio Expert</span></h3>
+                            </div>
+                        </div>-->
+                            </div>
+
+                            <div class="tab-pane fade" id="v-pills-9" role="tabpanel" aria-labelledby="v-pills-day-9-tab">
+                                <div class="coach-wrap ftco-animate d-sm-flex">
+
+                                    <div class="text pl-md-5">
+                                        <h2><a class="text-primary">After noon schedule</a></h2>
+
+                                        <div class="btn-group">
+                                            <div class="btn-group">
+                                                @{
+                                                    while (mb != me)
+                                                    {
+                                                        DietSite.Helpers.SessionHelpers.StoreObject(HttpContext.Session, DietSite.Helpers.Constant.ParticularSlot, me);
+                                                        <div class="view overlay">
+                                                            <x:button asp-page-handler="Book" class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Book">@me</x:button>
+                                                            <div class="mask flex-center rgba-red-strong">
+                                                                <p class="white-text"></p>
+                                                            </div>
+                                                        </div>
+                                                        TimeSpan t = TimeSpan.FromMinutes(avgtime);
+                                                        mb = mb.Add(t);
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <!--<div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-1.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Cardio Classes</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Jason Davis</a> <span class="position">Body Building</span></h3>
+                            </div>
+                        </div>
+                        <div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-2.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Basic Exercies for Begginer</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Jason Davis</a> <span class="position">Body Building</span></h3>
+                            </div>
+                        </div>-->
+                            </div>
+                            <!--
+                    <div class="tab-pane fade" id="v-pills-10" role="tabpanel" aria-labelledby="v-pills-day-10-tab">
+                        <div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-3.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Body Building</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Mark Harlem</a> <span class="position">Health Expert</span></h3>
+                            </div>
+                        </div>
+                        <div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-4.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Cardio Classes</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Mark Harlem</a> <span class="position">Health Expert</span></h3>
+                            </div>
+                        </div>
+                        <div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-1.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Basic Exercies for Begginer</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Mark Harlem</a> <span class="position">Health Expert</span></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="v-pills-11" role="tabpanel" aria-labelledby="v-pills-day-11-tab">
+                        <div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-2.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Body Building</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Nikki Valdez</a> <span class="position">Yoga Expert</span></h3>
+                            </div>
+                        </div>
+                        <div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-3.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Cardio Classes</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Nikki Valdez</a> <span class="position">Yoga Expert</span></h3>
+                            </div>
+                        </div>
+                        <div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-4.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Basic Exercies for Begginer</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Nikki Valdez</a> <span class="position">Yoga Expert</span></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="v-pills-12" role="tabpanel" aria-labelledby="v-pills-day-12-tab">
+                        <div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-1.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Body Building</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Troy Watson</a> <span class="position">Boxing Trainer</span></h3>
+                            </div>
+                        </div>
+                        <div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-2.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Cardio Classes</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Troy Watson</a> <span class="position">Boxing Trainer</span></h3>
+                            </div>
+                        </div>
+                        <div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-3.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Basic Exercies for Begginer</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Troy Watson</a> <span class="position">Boxing Trainer</span></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="v-pills-13" role="tabpanel" aria-labelledby="v-pills-day-13-tab">
+                        <div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-4.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Body Building</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Greg Mueller</a> <span class="position">Dance Expert</span></h3>
+                            </div>
+                        </div>
+                        <div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-1.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Cardio Classes</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Greg Mueller</a> <span class="position">Dance Expert</span></h3>
+                            </div>
+                        </div>
+                        <div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-2.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Basic Exercies for Begginer</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Greg Mueller</a> <span class="position">Dance Expert</span></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="v-pills-14" role="tabpanel" aria-labelledby="v-pills-day-14-tab">
+                        <div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-3.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Body Building</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Jesh Stone</a> <span class="position">Muslce Expert</span></h3>
+                            </div>
+                        </div>
+                        <div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-4.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Cardio Classes</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Jesh Stone</a> <span class="position">Muslce Expert</span></h3>
+                            </div>
+                        </div>
+                        <div class="coach-wrap ftco-animate d-sm-flex">
+                            <div class="img coach-img" style="background-image: url(images/trainer-1.jpg);"></div>
+                            <div class="text pl-md-5">
+                                <span class="time">08:00AM - 10:00AM</span>
+                                <h2><a href="#">Basic Exercies for Begginer</a></h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                <h3 class="coach-name">&mdash; <a href="#">Jesh Stone</a> <span class="position">Muslce Expert</span></h3>
+                            </div>
+                        </div>
+                    </div>-->
+                            @{
+                                DietSite.User u = DietSite.Helpers.SessionHelpers.GetObject<User>(HttpContext.Session, DietSite.Helpers.Constant.UserDetails);
+                                DietSite.Helpers.SessionHelpers.StoreObject(HttpContext.Session, DietSite.Helpers.Constant.RedirectPage, "Appointment");
+                                if (u.Username == "Chachi")
+                                {
+                                    <div class="card-footer text-center">                                        
+                                        <x:a asp-page="EditApp"  class="btn btn-primary m-1">Edit</x:a>
+                                        <x:a asp-page="CreateApp"  class="btn btn-primary m-1">Create</x:a>
+                                    </div>
+                                }                            
+                            }
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+}

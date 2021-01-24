@@ -1,0 +1,10 @@
+﻿@page
+@model DietSite.Pages.DeleteDietModel
+@{
+     ViewData["Title"] = "DeleteDiet";
+}
+<div class="jumbotron" >
+    <h1> Are you sure you want to delete the diet? </h1>
+    <x:button asp-page-handler="Delete" class="btn-danger" >Yes</x:button>
+    <x:button asp-page="Index" class="btn-primary">No</x:button>
+</div>

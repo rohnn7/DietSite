@@ -1,0 +1,51 @@
+﻿@page
+@model DietSite.Pages.BasketModel
+@{
+    ViewData["Title"] = "Basket";
+}
+@{ 
+    DietSite.Helpers.SessionHelpers.StoreObject(HttpContext.Session, DietSite.Helpers.Constant.RedirectPage, "Basket");
+    int total = 0;
+    var Basket = DietSite.Helpers.SessionHelpers.GetObject<List<Basket>>(HttpContext.Session, DietSite.Helpers.Constant.Basket);
+    foreach(var d in Basket)
+    {
+
+        <section class="col-sm-12 bg-light" >
+            <div class="row">
+                <div class="col-md d-flex align-self-stretch ftco-animate">
+                    <div class="media block-6 services text-center d-block">
+                        <div class="icon"><span class="flaticon-scale"></span></div>
+                    </div>
+                </div>
+                <div class="col-md d-flex align-self-stretch ftco-animate">
+                    <div class="media block-6 services text-center d-block">
+                        <div class="media-body">
+                            <a class="text-primary">Title </a>
+                            <p> @d.DName</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md d-flex align-self-stretch ftco-animate">
+                    <div class="media block-6 services text-center d-block">
+                        <div class="media-body">
+                            <a class="text-primary">Price</a>
+                            @{ total += d.Grossvalue; }
+                            <p> @d.Grossvalue</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md d-flex align-self-stretch ftco-animate">
+                    <div class="media block-6 services text-center d-block">
+                        <x:button asp-page="ViewDiet" asp-route-ID="@d.DietID">View</x:button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    <div class="row justify-content-center pb-5">
+        <div class="col-md-12 heading-section text-center ftco-animate">
+            <a>Total = @total</a>
+            <x:button asp-page="Purchase" type="submit" class="btn btn-primary" >Purchase</x:button>
+        </div>
+    </div>
+}

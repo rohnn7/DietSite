@@ -1,0 +1,72 @@
+﻿@page
+@model DietSite.Pages.EditAppModel
+@{
+    ViewData["Title"] = "EditApp";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-4 col-md-8">
+            @{
+                DietSite.User u = DietSite.Helpers.SessionHelpers.GetObject<DietSite.User>(HttpContext.Session, DietSite.Helpers.Constant.UserDetails);
+                appparam a = DietSite.Helpers.SessionHelpers.GetObject<appparam>(HttpContext.Session, DietSite.Helpers.Constant.TodaySlots);
+                if (u.Username == "Chachi")
+                {
+                    <div class="jumbotron">
+                        <form method="post">
+                            <h1 class="text-center">Create a Diet</h1>
+                            <div class="form-group row">
+                                <x:label asp-for="MorningTimeBegins" class="col-sm-2 col-form-label mt-2"></x:label>
+                                <div class="col-sm-8 mt-3">
+                                    <x:input asp-for="MorningTimeBegins" class="form-control" value="@a.MorinigScheduleBegin"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <x:textarea asp-for="MorningTimeEnds" class="col-sm-2 col-form-label mt-2"></x:textarea>
+                                <div class="col-sm-8 mt-3">
+                                    <x:input asp-for="MorningTimeEnds" class="form-control" value="@a.MorningScheduleEnds" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <x:textarea asp-for="AfternoonTimeBegins" class="col-sm-2 col-form-label mt-2"></x:textarea>
+                                <div class="col-sm-8 mt-3">
+                                    <x:input asp-for="AfternoonTimeBegins" class="form-control" value="@a.AfternoonScheduleBegins"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <x:textarea asp-for="AfternoonTimeEnds" class="col-sm-2 col-form-label mt-2"></x:textarea>
+                                <div class="col-sm-8 mt-3">
+                                    <x:input asp-for="AfternoonTimeEnds" class="form-control" value="@a.AfternoonSCheduleEnds"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <x:textarea asp-for="AvgTime" class="col-sm-2 col-form-label mt-2"></x:textarea>
+                                <div class="col-sm-8 mt-3">
+                                    <x:input asp-for="AvgTime" class="form-control" value="@a.Avgtime" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <x:textarea asp-for="Day" class="col-sm-2 col-form-label mt-2"></x:textarea>
+                                <div class="col-sm-8 mt-3">
+                                    <x:input asp-for="Day" class="form-control" value="@a.Offday"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <p align="center">
+                                        <x:button asp-page-handler="CreateApp" type="submit" class="btn btn-primary align-self-sm-center">Create</x:button>
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                }
+                else
+                {
+                    <h1>You are not authorized to Access this page</h1>
+                }
+
+            }
+        </div>
+    </div>
+</div>
